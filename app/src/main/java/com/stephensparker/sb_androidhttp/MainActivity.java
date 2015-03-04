@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy policy = new StrictMode.
-                ThreadPolicy.Builder().permitAll().build();
+        ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         // find the ID of the TextView
@@ -72,6 +72,7 @@ public class MainActivity extends Activity {
 
                     // create the Hashmap from the JSON string
                     HashMap familyMap = (HashMap)objectIn.readObject();
+
                     ArrayList<HashMap> familyMembers = (ArrayList<HashMap>)familyMap.get("familyMembers");
 
                     // get the family name and size
@@ -95,7 +96,6 @@ public class MainActivity extends Activity {
                     txtViewParsedValue.setText(strParsedValue);
 
                 }
-
             }
 
 
