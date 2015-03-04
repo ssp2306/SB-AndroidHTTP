@@ -71,31 +71,21 @@ public class MainActivity extends Activity {
                     JSONInputStream objectIn = new JSONInputStream(con.getInputStream());
 
                     // create the Hashmap from the JSON string
-                    //HashMap theMap = (HashMap)objectIn.readObject();
-                    //HashMap familyMap = (HashMap)theMap.get("members");
                     HashMap familyMap = (HashMap)objectIn.readObject();
-//                    ArrayList family = new ArrayList();
-//                    for (int i = 0; i > familyMap.size(); i++) {
-//                        family.add(i, "name");
-//                    }
+                    ArrayList<HashMap> familyMembers = (ArrayList<HashMap>)familyMap.get("familyMembers");
 
-//                    strParsedValue = family.get(1).toString();
-//                    strParsedValue +=" is " + familyMap.get("age");
-//                    strParsedValue += familyMap.get("gender");
-//                    strParsedValue += " loves " + familyMap.get("favcolor") + ".\n";
+                    // get the family name and size
+                    strParsedValue = "Meet the " + familyMap.get("family") + " Clan:\n";
+                    strParsedValue += "There are " + familyMembers.size() + " people in the family.\n\n";
 
+                    // pull all the family members from the hashmap
+                    for(HashMap person: familyMembers) {
 
-                    // get the family name
-                    //strParsedValue = "Meet the " + familyMap.get("members") + " Clan:\n";
-
-                    //strParsedValue += "There are " + familyMap.size() + " people in the family.\n\n";
-
-                    //get the family members and info
-
-                    strParsedValue = (String) familyMap.get("name");
-                    strParsedValue +=" is " + familyMap.get("age");
-                    strParsedValue += familyMap.get("gender");
-                    strParsedValue += " loves " + familyMap.get("favcolor") + ".\n";
+                        strParsedValue += person.get("name").toString();
+                        strParsedValue +=" is " + person.get("age");
+                        strParsedValue += person.get("gender");
+                        strParsedValue += " loves " + person.get("favcolor") + ".\n";
+                    }
 
                     txtViewParsedValue.setText(strParsedValue);
 
